@@ -5,7 +5,6 @@ import { ForecastController } from './controllers/forecast';
 import { Application } from 'express';
 
 export class SetupServer extends Server {
-
   constructor(private port = 3000) {
     super();
   }
@@ -16,7 +15,7 @@ export class SetupServer extends Server {
   }
 
   private setupExpress(): void {
-    this.app.use(bodyParser.json())
+    this.app.use(bodyParser.json());
   }
 
   private setupControllers(): void {

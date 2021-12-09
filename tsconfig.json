@@ -27,7 +27,8 @@
       "./test"
     ],
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "useUnknownInCatchVariables": false,
   },
   "include": [
     "./src/**/*.ts",
