@@ -6,6 +6,7 @@ import stormGlassNormalized3HoursFixture from '@test/fixtures/stormglass_normali
 jest.mock('@src/util/request');
 
 describe('StormGlass client', () => {
+  const MockedRequestClass = HTTPUtil.Request as jest.Mocked<typeof HTTPUtil.Request>;
   const mockedRequest = new HTTPUtil.Request() as jest.Mocked<HTTPUtil.Request>
   it('should return the normalized forecast from the StormGlass service', async () => {
     const lat = -33.792725;
@@ -44,12 +45,12 @@ describe('StormGlass client', () => {
     const lat = -33.7922726;
     const lng = 151.289824;
 
-    mockedRequest.get.mockRejectedValue({ message: 'Network Error' });
+    mockedRequest.get.mockRejectedValue('Network Error');
 
     const stormGlass = new StormGlass(mockedRequest);
 
     await expect(stormGlass.fetchPoints(lat, lng)).rejects.toThrow(
-      'Unexpected error when trying to communicate to StormGlass: Network Error'
+      'Unexpected error when trying to communicate to StormGlass: "Network Error"'
     );
   });
 
@@ -57,11 +58,23 @@ describe('StormGlass client', () => {
     const lat = -33.792726;
     const lng = 151.289824;
 
-    mockedRequest.get.mockRejectedValue({
-      response: {
+    class FakeAxiosError extends Error {
+      constructor(public response: object) {
+        super();
+      }
+    }
+
+    mockedRequest.get.mockRejectedValue(
+      new FakeAxiosError({
         status: 429,
         data: { errors: ['Rate Limit reached'] },
-      },
+      })
+    );
+
+    MockedRequestClass.isRequestError.mockReturnValue(true);
+    MockedRequestClass.extractErrorData.mockReturnValue({
+      status: 429,
+      data: { errors: ['Rate Limit reached'] },
     });
 
     const stormGlass = new StormGlass(mockedRequest);
