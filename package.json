@@ -31,13 +31,14 @@
   },
   "homepage": "https://github.com/leoander01/node-typescript-api#readme",
   "dependencies": {
-    "axios": "^0.19.2",
     "@overnightjs/core": "^1.7.4",
+    "@types/mongoose": "^5.11.97",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "config": "^3.3.1",
     "express": "^4.17.1",
-    "module-alias": "^2.2.2"
-
+    "module-alias": "^2.2.2",
+    "mongoose": "^6.1.7"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
