@@ -37,6 +37,7 @@
     "config": "^3.3.1",
     "express": "^4.17.1",
     "module-alias": "^2.2.2"
+
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
