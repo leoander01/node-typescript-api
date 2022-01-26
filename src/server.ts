@@ -38,4 +38,10 @@ export class SetupServer extends Server {
   public getApp(): Application {
     return this.app;
   }
+
+  public start(): void {
+    this.app.listen(this.port, () => {
+      console.info('Server listening of port:', this.port);
+    });
+  }
 }
