@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/src/index.js",
-    "start:dev": "ts-node-dev src/index.ts",
+    "start:dev": "ts-node-dev src/index.ts | pino-pretty -c",
     "test": "yarn test:unit && yarn test:functional",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
