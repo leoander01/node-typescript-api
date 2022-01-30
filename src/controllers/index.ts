@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 export abstract class BaseController {
   protected sendCreatedUpdatedErrorResponse(
     res: Response,
-    error: mongoose.Error.ValidationError | Error
+    error: unknown
   ): void {
     if (error instanceof mongoose.Error.ValidationError) {
       const clientErrors = this.handleClientErrors(error);
