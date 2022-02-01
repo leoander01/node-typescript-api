@@ -13,7 +13,7 @@ import logger from './logger';
 
 export class SetupServer extends Server {
   private server?: http.Server;
-  
+
   constructor(private port = 3000) {
     super();
   }
