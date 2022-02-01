@@ -8,8 +8,8 @@ export function authMiddleware(
 ): void {
   const token = req.headers?.['x-access-token'];
   try {
-    const decoded = AuthService.decodedToken(token as string);
-    req.decoded = decoded;
+    const decode = AuthService.decodeToken(token as string);
+    req.decode = decode;
     next();
   } catch (err) {
     if (err instanceof Error) {
